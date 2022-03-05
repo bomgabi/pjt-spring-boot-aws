@@ -1,6 +1,8 @@
 package com.example.book.web.dto;
 
-import com.example.book.domain.Posts;
+
+import com.example.book.domain.posts.Posts;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
