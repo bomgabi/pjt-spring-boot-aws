@@ -1,5 +1,9 @@
-# TODO ??? ???? ???? JPA ?? ????? ?????
+# TODO 기본적으로 잡혀있는 JPA 설정값은?
 
 spring:
   jpa:
-    show-sql: true
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
