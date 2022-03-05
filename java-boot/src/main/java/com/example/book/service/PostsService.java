@@ -1,6 +1,6 @@
 package com.example.book.service;
 
-import com.example.book.domain.PostsRepository;
+import com.example.book.domain.posts.PostsRepository;
 import com.example.book.web.dto.PostsSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

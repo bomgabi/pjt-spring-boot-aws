@@ -1,4 +1,4 @@
-package com.example.book.domain;
+package com.example.book.domain.posts;
 
 import lombok.Builder;
 import lombok.Getter;
