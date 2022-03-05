@@ -1,10 +1,12 @@
 package com.example.book.domain.posts;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 // TODO 테스트 하위 패키지들은 무엇이 있고 각각은 어떻게 다른가. assertj와 jupiter는 각각 무엇인지 모르겠다.
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -43,4 +45,29 @@ class PostsRepositoryTest {
         assertThat(posts.getContent()).isEqualTo(content);
     }
 
+    @Test
+    @DisplayName("Auditing 테스팅")
+    public void auditingTest() {
+        //given
+        LocalDateTime now = LocalDateTime.of(2019, 6, 4, 0 , 0, 0);
+        postsRepository.save(Posts.builder()
+                .title("title")
+                .content("content")
+                .author("author")
+                .build());
+
+        //when
+        List<Posts> all = postsRepository.findAll();
+
+        //then
+        Posts posts = all.get(0);
+
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        System.out.println("posts.getCreatedTime() = " + posts.getCreatedTime());
+        System.out.println("posts.getModifiedTime() = " + posts.getModifiedTime());
+        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+
+        assertThat(posts.getCreatedTime()).isAfter(now);
+        assertThat(posts.getModifiedTime()).isAfter(now);
+    }
 }
