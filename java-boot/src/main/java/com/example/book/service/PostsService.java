@@ -7,8 +7,10 @@ import com.example.book.web.dto.PostsSaveRequestDto;
 import com.example.book.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -35,5 +37,13 @@ public class PostsService {
         Posts posts = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("해당 게시글이 없습니다. id="+id));
         return new PostsResponseDto(posts);
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostsResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc().stream()
+                .map(PostsResponseDto::new)
+                .collect(Collectors.toList());
+
     }
 }
