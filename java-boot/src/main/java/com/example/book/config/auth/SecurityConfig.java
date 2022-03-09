@@ -1,6 +1,5 @@
-package com.example.book.config;
+package com.example.book.config.auth;
 
-import com.example.book.config.auth.CustomOAuth2UserService;
 import com.example.book.domain.user.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
