@@ -1,8 +1,10 @@
 # TODO 기본적으로 잡혀있는 JPA 설정값은?
 
 spring:
-#  profiles:
-#    include: oauth
+  profiles:
+    group:
+      local: oauth
+      real: real, real-db, oauth
   jpa:
     properties:
       hibernate:
